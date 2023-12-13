@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .box{
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin:  20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello vue</h1>
+
+    <div id="app">
+        <a :href="url">Best Website Ever</a>
+        <div v-if="showBooks">
+            <p>{{ title }}</p>
+            <p>{{ author }}</p>
+            <p>{{ age }}</p>
+        </div>
+        <button v-on:click="age++">Increase age</button>
+        <button v-on:click="age--">Decrase age</button>
+        <button @click="changeTitle('new title testing one')">Change title</button>
+        <button @click="changeShow">
+            <span v-if="showBooks">Hide Books</span>
+            <span v-else>Show Books</span>
+        </button>
+    </div>
+
+    <br>
+
+    <div class="box" @mouseover="handleEvent">Mouse Over</div>
+    <div class="box" @mouseleave="handleEvent">Mouse Leave</div>
+    <div class="box" @dblclick="handleEvent">Mouse Double Click</div>
+    <div class="box"></div>
+
+
+
+    <script src="app.js"></script>
+</body>
+</html>
