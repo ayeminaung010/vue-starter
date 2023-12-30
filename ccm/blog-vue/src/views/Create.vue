@@ -16,8 +16,10 @@
 </template>
 
 <script>
+import { db } from '@/firebase/config';
 import { ref } from 'vue'
 import {useRouter} from 'vue-router'
+import { addDoc, collection } from 'firebase/firestore';
 export default {
   setup(){
     let router=useRouter(); //this.$router
@@ -33,19 +35,15 @@ export default {
       tag.value=""
     }
     let addPost=async()=>{
-        await fetch("http://localhost:3000/posts",{
-          method:"POST",
-          headers:{
-            "Content-type":"application/json"
-          },
-          body:JSON.stringify(
-            {
-              title:title.value,//""
-              body:body.value,//""
-              tags:tags.value//[]
-            }
-          )
-        })
+        let newPost = {
+          title : title.value,
+          body : body.value,
+          tags : tags.value
+        }
+        let collectData = collection(db,"posts");
+        let res = addDoc(collectData,newPost);
+
+        console.log(res);
         // redirect user to home page
         router.push("/");
     }
